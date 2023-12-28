@@ -11,6 +11,10 @@
     "vscode",
     "code"
   ],
+  "files": [
+    "lib"
+  ],
+  "homepage": "https://legends-killer.github.io/yaje",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -39,5 +43,9 @@
     "tsc": "^2.0.4",
     "typescript": "^5.3.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/legends-killer/yaje"
+  }
 }
