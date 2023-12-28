@@ -1,0 +1,43 @@
+{
+  "name": "yaje",
+  "version": "1.0.0",
+  "author": "legends-killer <yyy@legends-killer.cq.cn>",
+  "description": "yet annother json editor",
+  "keywords": [
+    "monaco",
+    "editor",
+    "json",
+    "react",
+    "vscode",
+    "code"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "dev": "rsbuild dev --open",
+    "build": "rsbuild build",
+    "preview": "rsbuild preview",
+    "tsc": "tsc -b ./tsconfig.build.json"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^4.6.0",
+    "monaco-editor": "^0.45.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "^0.2.11",
+    "@rsbuild/plugin-react": "^0.2.11",
+    "@tsconfig/recommended": "^1.0.3",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/parser": "^6.16.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2",
+    "tsc": "^2.0.4",
+    "typescript": "^5.3.0"
+  },
+  "license": "MIT"
+}

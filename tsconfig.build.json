@@ -1,0 +1,12 @@
+{
+  "extends": "./node_modules/@tsconfig/recommended/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "lib": ["DOM", "ES2020"],
+    "module": "esnext",
+    "jsx": "react-jsx",
+    "declaration": true,
+    "moduleResolution": "Bundler"
+  },
+  "include": ["src/JsonEditor"]
+}
