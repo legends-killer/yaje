@@ -1,4 +1,4 @@
-# Yet Annother Json Editor
+# Yet Another Json Editor
 
 ## Features
 

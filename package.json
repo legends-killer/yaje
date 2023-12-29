@@ -1,8 +1,8 @@
 {
   "name": "yaje",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "legends-killer <yyy@legends-killer.cq.cn>",
-  "description": "yet annother json editor",
+  "description": "yet another json editor",
   "keywords": [
     "monaco",
     "editor",
