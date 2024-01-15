@@ -2,7 +2,7 @@
  * @Author: legends-killer
  * @Date: 2023-12-27 18:47:08
  * @LastEditors: legends-killer
- * @LastEditTime: 2023-12-28 23:43:39
+ * @LastEditTime: 2024-01-15 21:19:23
  * @Description:
  */
 import { Editor, EditorProps, useMonaco } from '@monaco-editor/react'
@@ -11,6 +11,7 @@ import { refItemProvider } from './provider/refItemProvider'
 import { ISuggestionItem, JsonSchemaProcessor } from './helper/jsonSchemaProcessor'
 import { languages as Languages, IDisposable } from 'monaco-editor'
 import { IProviderParam } from './provider/types'
+import { filterRepeateSuggestions } from '../utils'
 
 export interface IJsonEditor extends Partial<EditorProps> {
   /**
@@ -72,17 +73,19 @@ export const JsonEditor = forwardRef((props: IJsonEditor, ref: any) => {
 
   // init prompt
   useEffect(() => {
-    if (promptJsonSchema) {
+    if (promptJsonSchema && !(window as any).__YAJE_INIT__) {
       const jsonSchemaProcessor = new JsonSchemaProcessor(promptJsonSchema)
       const suggestions = jsonSchemaProcessor.getSuggestions()
-      setFinalKeySuggestions(suggestions.keySuggestions.concat(keySuggesions))
-      setFinalValueSuggestions(suggestions.valueSuggestions.concat(valueSuggestions))
+      setFinalKeySuggestions(filterRepeateSuggestions(suggestions.keySuggestions.concat(keySuggesions)))
+      setFinalValueSuggestions(filterRepeateSuggestions(suggestions.valueSuggestions.concat(valueSuggestions)))
     }
+    // use this to bypass multiple monaco instance interation
+    // FIXME this is a hack, related issue: https://github.com/microsoft/monaco-editor/issues/3378
+    (window as any).__YAJE_INIT__ = true
   }, [keySuggesions, promptJsonSchema, valueSuggestions])
 
   // init monaco
   useEffect(() => {
-    console.log(finalKeySuggestions, finalValueSuggestions)
     if (monaco) {
       monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
         validate: true,
