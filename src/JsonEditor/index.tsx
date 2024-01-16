@@ -11,7 +11,7 @@ import { refItemProvider } from './provider/refItemProvider'
 import { ISuggestionItem, JsonSchemaProcessor } from './helper/jsonSchemaProcessor'
 import { languages as Languages, IDisposable } from 'monaco-editor'
 import { IProviderParam } from './provider/types'
-import { filterRepeateSuggestions } from '../utils'
+import { filterRepeateSuggestions } from './utils'
 
 export interface IJsonEditor extends Partial<EditorProps> {
   /**
