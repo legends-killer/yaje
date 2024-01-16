@@ -1,10 +1,4 @@
-/*! ../utils */
-
 /*! core-js/modules/esnext.set.some.js */
-
-/*! react */
-
-/*! react/jsx-runtime */
 
 /*! core-js/modules/esnext.set.intersection.v2.js */
 
@@ -14,9 +8,13 @@
 
 /*! core-js/modules/esnext.set.is-subset-of.js */
 
-/*! ../helper/keyValueHelper */
-
 /*! react/jsx-runtime */
+
+/*! react-dom/client */
+
+/*! ./Example */
+
+/*! core-js/modules/esnext.iterator.constructor.js */
 
 /*! ./JsonEditor */
 
@@ -32,43 +30,43 @@
 
 /*! core-js/modules/esnext.set.union.js */
 
-/*! core-js/modules/esnext.iterator.constructor.js */
-
 /*! core-js/modules/esnext.map.includes.js */
-
-/*! core-js/modules/esnext.set.intersection.js */
-
-/*! core-js/modules/esnext.set.difference.js */
-
-/*! core-js/modules/esnext.iterator.map.js */
 
 /*! core-js/modules/esnext.map.find.js */
 
-/*! core-js/modules/esnext.iterator.for-each.js */
-
-/*! react */
-
-/*! react-dom/client */
-
-/*! core-js/modules/esnext.iterator.constructor.js */
-
-/*! react/jsx-runtime */
-
-/*! ./Example */
+/*! core-js/modules/esnext.set.intersection.js */
 
 /*! core-js/modules/esnext.iterator.for-each.js */
 
-/*! core-js/modules/esnext.set.every.js */
+/*! core-js/modules/esnext.set.difference.js */
 
 /*! core-js/modules/esnext.map.map-values.js */
+
+/*! core-js/modules/esnext.iterator.map.js */
 
 /*! core-js/modules/esnext.map.filter.js */
 
 /*! core-js/modules/esnext.map.find-key.js */
 
+/*! react */
+
+/*! core-js/modules/esnext.iterator.constructor.js */
+
+/*! react/jsx-runtime */
+
+/*! core-js/modules/esnext.iterator.for-each.js */
+
+/*! core-js/modules/esnext.set.every.js */
+
+/*! core-js/modules/esnext.iterator.map.js */
+
 /*! core-js/modules/esnext.map.update.js */
 
 /*! core-js/modules/esnext.map.merge.js */
+
+/*! core-js/modules/esnext.map.key-of.js */
+
+/*! core-js/modules/esnext.async-iterator.map.js */
 
 /*! core-js/modules/esnext.async-iterator.map.js */
 
@@ -80,25 +78,33 @@
 
 /*! core-js/modules/esnext.iterator.for-each.js */
 
-/*! core-js/modules/esnext.map.key-of.js */
-
 /*! @swc/helpers/_/_define_property */
+
+/*! core-js/modules/esnext.map.some.js */
 
 /*! core-js/modules/esnext.set.is-superset-of.js */
 
 /*! core-js/modules/esnext.async-iterator.for-each.js */
 
+/*! ./utils */
+
 /*! core-js/modules/es.array.push.js */
+
+/*! core-js/modules/esnext.async-iterator.for-each.js */
 
 /*! core-js/modules/esnext.set.is-superset-of.v2.js */
 
-/*! core-js/modules/esnext.map.some.js */
-
-/*! core-js/modules/esnext.iterator.map.js */
+/*! react */
 
 /*! core-js/modules/esnext.set.is-disjoint-from.js */
 
-/*! core-js/modules/esnext.async-iterator.for-each.js */
+/*! react/jsx-runtime */
+
+/*! core-js/modules/esnext.map.map-keys.js */
+
+/*! core-js/modules/esnext.map.delete-all.js */
+
+/*! core-js/modules/esnext.map.emplace.js */
 
 /*! monaco-editor */
 
@@ -106,21 +112,15 @@
 
 /*! core-js/modules/esnext.set.union.v2.js */
 
-/*! core-js/modules/esnext.async-iterator.map.js */
-
 /*! monaco-editor */
 
 /*! core-js/modules/esnext.set.is-subset-of.v2.js */
 
 /*! core-js/modules/esnext.set.difference.v2.js */
 
-/*! core-js/modules/esnext.map.map-keys.js */
-
 /*! react */
 
-/*! core-js/modules/esnext.map.delete-all.js */
-
-/*! core-js/modules/esnext.map.emplace.js */
+/*! ../helper/keyValueHelper */
 
 /*! ./helper/jsonSchemaProcessor */
 
@@ -128,13 +128,13 @@
 
 /*! @monaco-editor/react */
 
-/*! core-js/modules/esnext.set.join.js */
+/*! core-js/modules/esnext.map.every.js */
 
 /*! core-js/modules/esnext.map.reduce.js */
 
-/*! core-js/modules/esnext.iterator.constructor.js */
+/*! core-js/modules/esnext.set.join.js */
 
-/*! core-js/modules/esnext.map.every.js */
+/*! core-js/modules/esnext.iterator.constructor.js */
 
 /*! core-js/modules/esnext.set.symmetric-difference.js */
 
