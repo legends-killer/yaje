@@ -2,7 +2,7 @@
  * @Author: legends-killer
  * @Date: 2023-12-27 18:47:08
  * @LastEditors: legends-killer
- * @LastEditTime: 2024-01-15 21:19:23
+ * @LastEditTime: 2024-01-17 22:55:58
  * @Description:
  */
 import { Editor, EditorProps, useMonaco } from '@monaco-editor/react'
@@ -46,11 +46,29 @@ export interface IJsonEditor extends Partial<EditorProps> {
    * chars to trigger item complete suggestion
    */
   triggerCharacters?: string[]
+
+  /**
+   * to fix the issue that monaco editor will add repeated suggestions
+   * @see https://github.com/microsoft/monaco-editor/issues/3378
+   * maintain the suggestions that have been added in a outter component by user
+   * don't forget to do an increment update the ref when you add new suggestions
+   */
+  addedKeySuggestions: React.MutableRefObject<ISuggestionItem[]>
+
+  /**
+   * to fix the issue that monaco editor will add repeated suggestions
+   * @see https://github.com/microsoft/monaco-editor/issues/3378
+   * maintain the suggestions that have been added in a outter component by user
+   * don't forget to do an increment update the ref when you add new suggestions
+   */
+  addedValueSuggestions: React.MutableRefObject<ISuggestionItem[]>
 }
 
 export const JsonEditor = forwardRef((props: IJsonEditor, ref: any) => {
   const monaco = useMonaco()
   const {
+    addedKeySuggestions,
+    addedValueSuggestions,
     keySuggesions,
     valueSuggestions,
     promptJsonSchema,
@@ -62,8 +80,6 @@ export const JsonEditor = forwardRef((props: IJsonEditor, ref: any) => {
     theme,
     ...others
   } = props
-  const [finalKeySuggestions, setFinalKeySuggestions] = useState<ISuggestionItem[]>([])
-  const [finalValueSuggestions, setFinalValueSuggestions] = useState<ISuggestionItem[]>([])
 
   useImperativeHandle(ref, () => ({
     getEditorValue: () => {
@@ -71,22 +87,23 @@ export const JsonEditor = forwardRef((props: IJsonEditor, ref: any) => {
     },
   }))
 
-  // init prompt
-  useEffect(() => {
-    if (promptJsonSchema && !(window as any).__YAJE_INIT__) {
-      const jsonSchemaProcessor = new JsonSchemaProcessor(promptJsonSchema)
-      const suggestions = jsonSchemaProcessor.getSuggestions()
-      setFinalKeySuggestions(filterRepeateSuggestions(suggestions.keySuggestions.concat(keySuggesions)))
-      setFinalValueSuggestions(filterRepeateSuggestions(suggestions.valueSuggestions.concat(valueSuggestions)))
-    }
-    // use this to bypass multiple monaco instance interation
-    // FIXME this is a hack, related issue: https://github.com/microsoft/monaco-editor/issues/3378
-    (window as any).__YAJE_INIT__ = true
-  }, [keySuggesions, promptJsonSchema, valueSuggestions])
-
   // init monaco
   useEffect(() => {
     if (monaco) {
+      const jsonSchemaProcessor = new JsonSchemaProcessor(promptJsonSchema || {})
+      const suggestions = jsonSchemaProcessor.getSuggestions()
+      const finalKeySuggestions = filterRepeateSuggestions(
+        suggestions.keySuggestions.concat(keySuggesions),
+        addedKeySuggestions.current
+      )
+      const finalValueSuggestions = filterRepeateSuggestions(
+        suggestions.valueSuggestions.concat(valueSuggestions),
+        addedValueSuggestions.current
+      )
+
+      addedKeySuggestions.current = finalKeySuggestions.concat(addedKeySuggestions.current)
+      addedValueSuggestions.current = finalValueSuggestions.concat(addedValueSuggestions.current)
+
       monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
         validate: true,
         allowComments: true,
@@ -120,11 +137,12 @@ export const JsonEditor = forwardRef((props: IJsonEditor, ref: any) => {
       })
     }
   }, [
-    finalKeySuggestions,
-    finalValueSuggestions,
+    addedKeySuggestions,
+    addedValueSuggestions,
     keySuggesions,
     monaco,
     onSuggestionItemSelect,
+    promptJsonSchema,
     triggerCharacters,
     userDefinedItemCompleteProviders,
     valueSuggestions,

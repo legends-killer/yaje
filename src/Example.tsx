@@ -2,7 +2,7 @@
  * @Author: legends-killer
  * @Date: 2023-12-27 20:10:41
  * @LastEditors: legends-killer
- * @LastEditTime: 2023-12-28 22:30:36
+ * @LastEditTime: 2024-01-17 22:50:48
  * @Description: Example App
  */
 import { useEffect, useRef, useState } from 'react'
@@ -15,6 +15,10 @@ export const Example = () => {
   const [loading, setLoading] = useState(true)
   const [valueSuggestions, setValueSuggestions] = useState<ISuggestionItem[]>([])
   const ref = useRef<any>()
+  // to fix the issue that monaco editor will add repeated suggestions
+  // maintain the suggestions that have been added in a outter component by user
+  const addedKeySuggestions = useRef<ISuggestionItem[]>([])
+  const addedValueSuggestions = useRef<ISuggestionItem[]>([])
 
   const init = async () => {
     const jsonSchema = await (
@@ -31,6 +35,7 @@ export const Example = () => {
       })
     })
     setValueSuggestions(myValueSuggestions)
+    addedValueSuggestions.current = addedValueSuggestions.current.concat(myValueSuggestions)
     setJsonSchema(jsonSchema)
     setLoading(false)
   }
@@ -47,13 +52,15 @@ export const Example = () => {
     <div>
       {!loading && (
         <JsonEditor
+          addedKeySuggestions={addedKeySuggestions}
+          addedValueSuggestions={addedValueSuggestions}
           ref={ref}
           keySuggesions={[]}
           valueSuggestions={valueSuggestions}
           height={'90vh'}
           promptJsonSchema={jsonSchema}
           userDefinedItemCompleteProviders={[]}
-          triggerCharacters={["{"]}
+          triggerCharacters={['{']}
         />
       )}
       <button
