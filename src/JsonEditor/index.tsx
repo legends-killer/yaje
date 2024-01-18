@@ -2,14 +2,14 @@
  * @Author: legends-killer
  * @Date: 2023-12-27 18:47:08
  * @LastEditors: legends-killer
- * @LastEditTime: 2024-01-17 22:55:58
+ * @LastEditTime: 2024-01-18 20:19:15
  * @Description:
  */
 import { Editor, EditorProps, useMonaco } from '@monaco-editor/react'
-import { forwardRef, useEffect, useImperativeHandle, useState } from 'react'
+import { forwardRef, useEffect, useImperativeHandle } from 'react'
 import { refItemProvider } from './provider/refItemProvider'
 import { ISuggestionItem, JsonSchemaProcessor } from './helper/jsonSchemaProcessor'
-import { languages as Languages, IDisposable } from 'monaco-editor'
+import { IDisposable, languages as Languages } from 'monaco-editor'
 import { IProviderParam } from './provider/types'
 import { filterRepeateSuggestions } from './utils'
 
@@ -89,6 +89,7 @@ export const JsonEditor = forwardRef((props: IJsonEditor, ref: any) => {
 
   // init monaco
   useEffect(() => {
+    const providers: IDisposable[] = []
     if (monaco) {
       const jsonSchemaProcessor = new JsonSchemaProcessor(promptJsonSchema || {})
       const suggestions = jsonSchemaProcessor.getSuggestions()
@@ -111,22 +112,10 @@ export const JsonEditor = forwardRef((props: IJsonEditor, ref: any) => {
       })
 
       // default provider
-      monaco.languages.registerCompletionItemProvider(
-        'json',
-        refItemProvider({
-          monaco,
-          jsonKeySuggestions: finalKeySuggestions,
-          jsonValueSuggestions: finalValueSuggestions,
-          onSuggestionItemSelect,
-          triggerCharacters,
-        })
-      )
-
-      // users provider
-      userDefinedItemCompleteProviders.forEach((userProvider) => {
+      providers.push(
         monaco.languages.registerCompletionItemProvider(
           'json',
-          userProvider({
+          refItemProvider({
             monaco,
             jsonKeySuggestions: finalKeySuggestions,
             jsonValueSuggestions: finalValueSuggestions,
@@ -134,7 +123,30 @@ export const JsonEditor = forwardRef((props: IJsonEditor, ref: any) => {
             triggerCharacters,
           })
         )
+      )
+
+      // users provider
+      userDefinedItemCompleteProviders.forEach((userProvider) => {
+        providers.push(
+          monaco.languages.registerCompletionItemProvider(
+            'json',
+            userProvider({
+              monaco,
+              jsonKeySuggestions: finalKeySuggestions,
+              jsonValueSuggestions: finalValueSuggestions,
+              onSuggestionItemSelect,
+              triggerCharacters,
+            })
+          )
+        )
       })
+    }
+    return () => {
+      if (monaco) {
+        providers.forEach((item) => {
+          item.dispose()
+        })
+      }
     }
   }, [
     addedKeySuggestions,
