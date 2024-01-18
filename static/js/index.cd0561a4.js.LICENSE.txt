@@ -1,50 +1,42 @@
-/*! core-js/modules/esnext.map.find-key.js */
-
 /*! core-js/modules/esnext.set.is-superset-of.js */
 
-/*! react-dom/client */
-
-/*! ./utils */
-
-/*! ./Example */
+/*! core-js/modules/esnext.map.includes.js */
 
 /*! core-js/modules/esnext.set.is-superset-of.v2.js */
 
-/*! core-js/modules/esnext.iterator.map.js */
-
-/*! core-js/modules/esnext.map.update.js */
-
-/*! core-js/modules/esnext.map.merge.js */
-
 /*! core-js/modules/esnext.set.is-disjoint-from.js */
 
-/*! core-js/modules/esnext.map.key-of.js */
+/*! core-js/modules/esnext.map.find.js */
+
+/*! core-js/modules/esnext.iterator.for-each.js */
 
 /*! monaco-editor */
 
-/*! ./provider/refItemProvider */
-
 /*! core-js/modules/esnext.set.union.v2.js */
 
-/*! core-js/modules/esnext.async-iterator.map.js */
+/*! core-js/modules/esnext.map.map-values.js */
 
 /*! core-js/modules/esnext.set.is-subset-of.v2.js */
 
 /*! core-js/modules/esnext.set.difference.v2.js */
 
-/*! react */
+/*! core-js/modules/esnext.map.filter.js */
 
-/*! ./helper/jsonSchemaProcessor */
+/*! core-js/modules/esnext.map.find-key.js */
 
-/*! core-js/modules/esnext.async-iterator.for-each.js */
-
-/*! @monaco-editor/react */
+/*! react-dom/client */
 
 /*! ./JsonEditor */
 
+/*! ./Example */
+
+/*! core-js/modules/esnext.iterator.map.js */
+
 /*! core-js/modules/esnext.set.join.js */
 
-/*! core-js/modules/esnext.map.some.js */
+/*! core-js/modules/esnext.map.update.js */
+
+/*! core-js/modules/esnext.map.merge.js */
 
 /*! core-js/modules/esnext.iterator.constructor.js */
 
@@ -54,21 +46,23 @@
 
 /*! core-js/modules/esnext.set.symmetric-difference.v2.js */
 
+/*! core-js/modules/es.array.push.js */
+
 /*! core-js/modules/esnext.set.map.js */
 
-/*! core-js/modules/esnext.async-iterator.for-each.js */
+/*! core-js/modules/esnext.map.key-of.js */
+
+/*! core-js/modules/esnext.async-iterator.map.js */
 
 /*! core-js/modules/esnext.set.some.js */
 
 /*! core-js/modules/esnext.set.intersection.v2.js */
 
+/*! core-js/modules/esnext.iterator.constructor.js */
+
 /*! core-js/modules/esnext.set.find.js */
 
-/*! core-js/modules/esnext.map.map-keys.js */
-
-/*! core-js/modules/esnext.map.delete-all.js */
-
-/*! core-js/modules/esnext.map.emplace.js */
+/*! core-js/modules/esnext.iterator.for-each.js */
 
 /*! react */
 
@@ -80,27 +74,29 @@
 
 /*! core-js/modules/esnext.iterator.for-each.js */
 
-/*! ../helper/keyValueHelper */
+/*! core-js/modules/esnext.map.some.js */
 
 /*! core-js/modules/esnext.set.is-subset-of.js */
 
-/*! core-js/modules/esnext.map.every.js */
+/*! ./utils */
 
-/*! core-js/modules/esnext.map.reduce.js */
-
-/*! core-js/modules/esnext.iterator.find.js */
-
-/*! react/jsx-runtime */
-
-/*! core-js/modules/esnext.async-iterator.find.js */
+/*! core-js/modules/esnext.async-iterator.for-each.js */
 
 /*! core-js/modules/esnext.set.reduce.js */
 
 /*! core-js/modules/esnext.json.parse.js */
 
+/*! core-js/modules/esnext.map.map-keys.js */
+
 /*! core-js/modules/esnext.async-iterator.for-each.js */
 
+/*! ./provider/refItemProvider */
+
 /*! core-js/modules/esnext.set.filter.js */
+
+/*! core-js/modules/esnext.map.delete-all.js */
+
+/*! core-js/modules/esnext.map.emplace.js */
 
 /*! core-js/modules/es.array.push.js */
 
@@ -108,13 +104,27 @@
 
 /*! react */
 
-/*! react/jsx-runtime */
+/*! ./helper/jsonSchemaProcessor */
+
+/*! core-js/modules/esnext.async-iterator.for-each.js */
+
+/*! ../helper/keyValueHelper */
+
+/*! @monaco-editor/react */
 
 /*! core-js/modules/esnext.set.intersection.js */
+
+/*! core-js/modules/esnext.map.every.js */
+
+/*! core-js/modules/esnext.map.reduce.js */
+
+/*! core-js/modules/esnext.iterator.find.js */
 
 /*! core-js/modules/esnext.set.difference.js */
 
 /*! core-js/modules/esnext.iterator.map.js */
+
+/*! core-js/modules/esnext.async-iterator.find.js */
 
 /*! core-js/modules/esnext.async-iterator.for-each.js */
 
@@ -122,28 +132,20 @@
 
 /*! core-js/modules/esnext.set.every.js */
 
-/*! core-js/modules/esnext.iterator.constructor.js */
+/*! react */
 
-/*! core-js/modules/esnext.map.includes.js */
+/*! react/jsx-runtime */
 
 /*! monaco-editor */
 
 /*! core-js/modules/esnext.async-iterator.map.js */
 
-/*! core-js/modules/esnext.map.find.js */
-
-/*! core-js/modules/esnext.iterator.constructor.js */
-
 /*! core-js/modules/esnext.set.add-all.js */
 
 /*! core-js/modules/esnext.set.delete-all.js */
 
-/*! core-js/modules/esnext.iterator.for-each.js */
+/*! react/jsx-runtime */
 
-/*! core-js/modules/esnext.iterator.for-each.js */
-
-/*! core-js/modules/esnext.map.map-values.js */
+/*! core-js/modules/esnext.iterator.constructor.js */
 
 /*! @swc/helpers/_/_define_property */
-
-/*! core-js/modules/esnext.map.filter.js */
