@@ -2,7 +2,7 @@
  * @Author: legends-killer
  * @Date: 2023-12-27 19:43:15
  * @LastEditors: legends-killer
- * @LastEditTime: 2024-01-15 21:19:34
+ * @LastEditTime: 2024-01-24 23:01:33
  * @Description:
  */
 import { languages as Languages } from 'monaco-editor'
@@ -32,6 +32,7 @@ export const refItemProvider = (param: IProviderParam): Languages.CompletionItem
           label: jsonSuggestion.title,
           kind: jsonSuggestion.kind,
           insertText: jsonSuggestion.suggestion,
+          sortText: jsonSuggestion.sortText,
           command: {
             id: `accept.completeItem.suggestion-${jsonSuggestion.title}`,
             title: `Accept ${jsonSuggestion.title}`,
@@ -43,7 +44,7 @@ export const refItemProvider = (param: IProviderParam): Languages.CompletionItem
             startColumn: currentWord.startColumn,
             endColumn: currentWord.endColumn,
           },
-        }
+        } as Languages.CompletionItem
       })
 
       return {

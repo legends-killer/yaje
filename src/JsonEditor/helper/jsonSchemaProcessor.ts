@@ -2,7 +2,7 @@
  * @Author: legends-killer
  * @Date: 2023-12-27 21:58:54
  * @LastEditors: legends-killer
- * @LastEditTime: 2023-12-28 22:27:38
+ * @LastEditTime: 2024-01-24 23:03:33
  * @Description:
  */
 
@@ -13,6 +13,7 @@ export interface ISuggestionItem {
   suggestion: string
   kind: Languages.CompletionItemKind
   description?: string
+  sortText?: string
 }
 
 export class JsonSchemaProcessor {
@@ -108,12 +109,14 @@ export class JsonSchemaProcessor {
             title: key,
             suggestion: this.getSuggestionItemFromDeRefedDefinition(deRefedDefinition),
             kind: Languages.CompletionItemKind.Struct,
+            sortText: key,
           })
           keySuggestions.push({
             title: key,
             suggestion: `"${key}"`,
             kind: Languages.CompletionItemKind.Variable,
             description: val.description ?? '',
+            sortText: key,
           })
           keySuggestions = keySuggestions.concat(this.getSuggestionItemFromDerefDefinitionKey(deRefedDefinition))
         } else {
@@ -121,11 +124,13 @@ export class JsonSchemaProcessor {
             title: key,
             kind: Languages.CompletionItemKind.Text,
             suggestion: '""',
+            sortText: key,
           })
           keySuggestions.push({
             title: key,
             kind: Languages.CompletionItemKind.Variable,
             suggestion: `"${key}"`,
+            sortText: key,
           })
         }
       }
