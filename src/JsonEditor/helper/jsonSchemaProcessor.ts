@@ -2,7 +2,7 @@
  * @Author: legends-killer
  * @Date: 2023-12-27 21:58:54
  * @LastEditors: legends-killer
- * @LastEditTime: 2024-01-24 23:03:33
+ * @LastEditTime: 2024-01-31 23:31:10
  * @Description:
  */
 
@@ -18,14 +18,17 @@ export interface ISuggestionItem {
 
 export class JsonSchemaProcessor {
   schema: any
+  deRefCache: Map<string, any>
   constructor(schema: any) {
     this.schema = schema
+    this.deRefCache = new Map()
   }
   private getSchemaByRef(ref: string) {
     const refPath = ref.split('/')
     const refName = refPath[refPath.length - 1]
     return this.schema.definitions[refName] ?? {}
   }
+
   private deRef(currentDefinition: any) {
     const properties = currentDefinition.properties
     const res = {} as any
@@ -33,7 +36,13 @@ export class JsonSchemaProcessor {
     Object.entries(properties).forEach((prop: any) => {
       const [key, value] = prop
       if (value.$ref?.length) {
-        res[key] = this.deRef(this.getSchemaByRef(value.$ref))
+        const cachedDeRefResult = this.deRefCache.get(value.$ref)
+        if (cachedDeRefResult) res[key] = cachedDeRefResult
+        else {
+          const deRefResult = this.deRef(this.getSchemaByRef(value.$ref))
+          res[key] = deRefResult
+          this.deRefCache.set(value.$ref, deRefResult)
+        }
       } else {
         res[key] = value
       }
