@@ -2,7 +2,7 @@
  * @Author: legends-killer
  * @Date: 2023-12-27 21:58:54
  * @LastEditors: legends-killer
- * @LastEditTime: 2024-01-31 23:31:10
+ * @LastEditTime: 2024-03-18 23:26:25
  * @Description:
  */
 
@@ -29,7 +29,7 @@ export class JsonSchemaProcessor {
     return this.schema.definitions[refName] ?? {}
   }
 
-  private deRef(currentDefinition: any) {
+  private deRef(currentDefinition: any, visited: string[]) {
     const properties = currentDefinition.properties
     const res = {} as any
     if (!properties) return res
@@ -38,8 +38,12 @@ export class JsonSchemaProcessor {
       if (value.$ref?.length) {
         const cachedDeRefResult = this.deRefCache.get(value.$ref)
         if (cachedDeRefResult) res[key] = cachedDeRefResult
+        else if (visited.includes(value.$ref)) {
+          res[key] = {title: '', description: `Repeate Reference: ${value.$ref}`, type: "string", properties: {}}
+        }
         else {
-          const deRefResult = this.deRef(this.getSchemaByRef(value.$ref))
+          visited.push(value.$ref)
+          const deRefResult = this.deRef(this.getSchemaByRef(value.$ref), visited)
           res[key] = deRefResult
           this.deRefCache.set(value.$ref, deRefResult)
         }
@@ -112,7 +116,7 @@ export class JsonSchemaProcessor {
       const definitions = { ...this.schema.definitions, ...this.schema.properties }
       for (const [key, val] of Object.entries<any>(definitions)) {
         if (val.type === 'object') {
-          const deRefedDefinition = this.deRef(val)
+          const deRefedDefinition = this.deRef(val, [])
 
           valueSuggestions.push({
             title: key,
